@@ -1,0 +1,54 @@
+<div class="todo-container">
+
+  <h2>Todo V1</h2>
+
+  <mat-form-field appearance="outline" style="width:100%">
+  <input
+    matInput
+    [(ngModel)]="newTodo"
+    placeholder="Offload your mind"
+    (keyup.enter)="addTodo()">
+</mat-form-field>
+
+ <div class="todo-item" *ngFor="let todo of todos">
+
+  <div class="todo-left">
+
+ <mat-checkbox
+  [checked]="todo.isCompleted"
+  (change)="toggleTodo(todo)">
+</mat-checkbox>
+
+    <span
+  *ngIf="editingId !== todo.id"
+  [class.completed]="todo.isCompleted">
+  {{ todo.title }}
+</span>
+
+<input
+  *ngIf="editingId === todo.id"
+  class="edit-input"
+  [(ngModel)]="todo.title"
+  (keyup.enter)="updateTodo(todo)">
+
+  </div>
+
+  <div class="todo-actions">
+
+  <button mat-icon-button (click)="startEdit(todo.id)">
+  <mat-icon>edit</mat-icon>
+</button>
+<button mat-icon-button (click)="updateTodo(todo)">
+  <mat-icon>check</mat-icon>
+</button>
+
+<button mat-icon-button (click)="deleteTodo(todo.id)">
+  <mat-icon>delete</mat-icon>
+</button>
+
+
+  </div>
+
+</div>
+
+</div>
