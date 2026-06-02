@@ -33,21 +33,32 @@
 
   </div>
 
-  <div class="todo-actions">
+<div class="todo-actions">
 
-  <button mat-icon-button (click)="startEdit(todo.id)">
-  <mat-icon>edit</mat-icon>
-</button>
-<button mat-icon-button (click)="updateTodo(todo)">
-  <mat-icon>check</mat-icon>
-</button>
+  <!-- Edit button -->
+  <button
+    *ngIf="editingId !== todo.id"
+    mat-icon-button
+    (click)="startEdit(todo.id)">
+    <mat-icon>edit</mat-icon>
+  </button>
 
-<button mat-icon-button (click)="deleteTodo(todo.id)">
-  <mat-icon>delete</mat-icon>
-</button>
+  <!-- Save button -->
+  <button
+    *ngIf="editingId === todo.id"
+    mat-icon-button
+    (click)="updateTodo(todo)">
+    <mat-icon>check</mat-icon>
+  </button>
 
+  <!-- Delete button -->
+  <button
+    mat-icon-button
+    (click)="deleteTodo(todo.id)">
+    <mat-icon>delete</mat-icon>
+  </button>
 
-  </div>
+</div>
 
 </div>
 
